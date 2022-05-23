@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>Netflix | Watch the best recommended movies for free.</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- 
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+     <link rel="stylesheet" href="css/magnific-popup.css">
+     <link rel="stylesheet" href="css/font-awesome.min.css"> -->
+     <link rel="shortcut icon" href="{{ url_for('static',filename='img/netflix-favicon.png') }}" type="image/x-icon">
+
+     <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<!-- Bootstrap -->
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+  <!-- Auto Complete -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+  
+
+  <link rel= "stylesheet" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
+  <link rel= "stylesheet" href= "{{ url_for('static',filename='css/magnific-popup.css') }}">
+  <<link rel= "stylesheet" href= "{{ url_for('static',filename='css/font-awesome.min.css') }}">
+
+   
+
+  <!-- External CSS -->
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style_home.css') }}">
+  <link rel= "stylesheet" href= "{{ url_for('static',filename='css/style-index.css') }}">
+  <link rel= "stylesheet" href= "{{ url_for('static',filename='style-recommend.css') }}">
+
+  <script type="text/javascript">
+     var films = {{suggestions|tojson}};
+     $(document).ready(function(){
+       $("#myModal").modal('show');
+     });
+   </script>
+ 
+ <script type="text/javascript">
+   function toggle_visibility() {
+       var e = document.getElementById('work');
+          e.style.display = 'none';
+   }
+ </script>
+</head>
+<body>
+    
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+               <span class="spinner-rotate"></span>
+          </div>
+     </section>
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="/" class="navbar-brand">Netflix</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="/home" class="smoothScroll">Home</a></li>
+                         <li><a href="#about" class="smoothScroll">About</a></li>
+                         <li><a href="#work" class="smoothScroll">Our Work</a></li>
+                         <li><a href="#contact" class="smoothScroll">Contacts</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+                         <li><a href="#"><i class="fa fa-github"></i></a></li>
+                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                         <li class="section-btn"><a href="#" data-toggle="modal" data-target="#modal-form">Sign in / Join</a></li>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+
+     <!-- HOME -->
+     <section id="home" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                         <div class="home-info">
+                              <h1>Netflix | Get the best recommended movies.</h1>
+                              <a href="#about" class="btn section-btn smoothScroll">Watch the video to get Started</a>
+                              
+                         </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="home-video">
+                              <div class="embed-responsive embed-responsive-16by9">
+                                   <iframe src="https://www.youtube.com/embed/_2DYLrHbwcI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+     <section>
+          <h3 class="text-center">Search your movies here ....</h3>
+          <div class="form-group shadow-textarea" style="margin-top: 30px;text-align: center;color: rgb(230, 57, 57);">
+               <input type="text" name="movie" class="movie form-control" id="autoComplete" autocomplete="off" placeholder="Enter the Movie Name" style="background-color: #f0f0f0;border-color:#ffffff;width: 60%; height: 40px;;color: #181818" required="required" />
+               <br>
+           </div>
+       
+           <div class="form-group" style="text-align: center;">
+             <button class="btn btn-primary btn-block movie-button" style="background-color: #e50914;text-align: center;border-color: #e50914;width:120px;" disabled="true" onclick="toggle_visibility()" >Enter</button><br><br>
+           </div>
+     </section>
+
+
+     <!-- WORK -->
+     <section id="work" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row row-2">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2>Some Sci-Fi Movies For You</h2>
+                              <span class="line-bar">...</span>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="The Avengers" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/avengers.jpg" class="img-responsive" alt="Work">
+                                   <div class="work-info">
+                                        <h3>Avengers</h3>
+                                        
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="The amazing spiderman" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/spiderman.jpg" class="img-responsive" alt="Work">
+                                   <div class="work-info">
+                                        <h3>The amazing spiderman</h3>
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Inception" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/inception.jpg" class="img-responsive" alt="Work">
+
+                                   <div class="work-info">
+                                        <h3>Inception</h3>
+                                        
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Interstellar" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/interstellar.jpg" class="img-responsive" alt="Work">
+
+                                   <div class="work-info">
+                                        <h3>Interstellar</h3>
+                              
+                                   </div>
+                         </div>
+                    </div>
+
+               </div>
+
+               <div class="row row-2">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2>Some Bollywood Movies For You</h2>
+                              <span class="line-bar">...</span>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Hera Pheri" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/hera-pheri.jpg" class="img-responsive" alt="Work">
+                                   <div class="work-info">
+                                        <h3>Hera Pheri</h3>
+                                        
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Barfi" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/barfi.jpg" class="img-responsive" alt="Work">
+                                   <div class="work-info">
+                                        <h3>Barfi</h3>
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Stree" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/stree.jpg" class="img-responsive" alt="Work">
+
+                                   <div class="work-info">
+                                        <h3>Stree</h3>
+                                        
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Andhadun" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/andhadun.jpg" class="img-responsive" alt="Work">
+
+                                   <div class="work-info">
+                                        <h3>Andhadun</h3>
+                              
+                                   </div>
+                         </div>
+                    </div>
+
+               </div>
+
+               <div class="row row-2">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2>Some Bollywood Biography Movies For You</h2>
+                              <span class="line-bar">...</span>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="M.S. DHONI: THE UNTOLD STORY" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/dhoni.jpg" class="img-responsive" alt="Work">
+                                   <div class="work-info">
+                                        <h3>M.S. DHONI: THE UNTOLD STORY</h3>
+                                        
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Sanju" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/sanju.jpg" class="img-responsive" alt="Work">
+                                   <div class="work-info">
+                                        <h3>Sanju</h3>
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Bhaag milkha bhaag" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/Bhaag-milkha.jpg" class="img-responsive" alt="Work">
+
+                                   <div class="work-info">
+                                        <h3>Bhaag Milkha Bhaag</h3>
+                                        
+                                   </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <!-- WORK THUMB -->
+                         <div class="work-thumb" title="Interstellar" onclick="recommendcard(this); toggle_visibility()">
+                                   <img src="static/images/interstellar.jpg" class="img-responsive" alt="Work">
+
+                                   <div class="work-info">
+                                        <h3>Interstellar</h3>
+                              
+                                   </div>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+     <div class="results">
+          <center>
+            <h2 id="name" class="text-uppercase"></h2>
+          </center>
+     </div>
+
+     <!-- FOOTER -->
+     <footer data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-5 col-sm-12">
+                         <div class="footer-thumb footer-info"> 
+                              <h2>Netflix India</h2>
+                              <p>Your one stop destination for best recommendation website.</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4"> 
+                         <div class="footer-thumb"> 
+                              <h2>Company</h2>
+                              <ul class="footer-link">
+                                   <li><a href="#">About Us</a></li>
+                                   <li><a href="#">Join our team</a></li>
+                                   <li><a href="#">Read Blog</a></li>
+                                   <li><a href="#">Press</a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4"> 
+                         <div class="footer-thumb"> 
+                              <h2>Services</h2>
+                              <ul class="footer-link">
+                                   <li><a href="#">Pricing</a></li>
+                                   <li><a href="#">Documentation</a></li>
+                                   <li><a href="#">Support</a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-4"> 
+                         <div class="footer-thumb"> 
+                              <h2>Find us</h2>
+                              <p>Contact me on, <br> Instagram, Mail, Linkedin</p>
+                         </div>
+                    </div>                    
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="footer-bottom">
+                              <div class="col-md-6 col-sm-5">
+                                   <div class="copyright-text"> 
+                                        <p>Copyright &copy; 2022 Netflix India</p>
+                                   </div>
+                              </div>
+                              <div class="col-md-6 col-sm-7">
+                                   <div class="phone-contact"> 
+                                        <p>Call us <span>(+66) 010-020-0340</span></p>
+                                   </div>
+                                   <ul class="social-icon">
+                                        <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                        <li><a href="#" class="fa fa-github"></a></li>
+                                        <li><a href="#" class="fa fa-linkedin"></a></li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+     <!-- SCRIPTS -->
+     <script type="text/javascript" src="{{url_for('static', filename='js/jquery.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='js/jquery.stellar.min.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='js/jquery.magnific-popup.min.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='js/smoothscroll.js')}}"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='js/custom.js')}}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script type="text/javascript" src="{{url_for('static', filename='autocomplete.js')}}"></script>
+   
+     <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+     <!-- <script src="js/bootstrap.min.js"></script>
+     <script src="js/jquery.stellar.min.js"></script>
+     <script src="js/jquery.magnific-popup.min.js"></script>
+     <script src="js/smoothscroll.js"></script>
+     <script src="js/custom.js"></script> -->
+
+</body>
+</html>
