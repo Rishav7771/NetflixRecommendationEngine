@@ -12,7 +12,7 @@ The details of the movies(title, genre, runtime, rating, poster, etc) are fetche
 
 Check out the live demo: https://polar-wildwood-04781.herokuapp.com/
 
-Link to youtube demo: 
+Link to youtube demo: https://youtu.be/BpYpOhQqh78
 
 Don't worry if the movie that you are looking for is not auto-suggested. Just type the movie name and click on "enter". You will be good to go eventhough if you made some typo errors.
 
