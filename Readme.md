@@ -14,6 +14,8 @@ Check out the live demo: https://polar-wildwood-04781.herokuapp.com/
 
 Link to youtube demo: https://youtu.be/BpYpOhQqh78
 
+Documentation Link: https://drive.google.com/file/d/15pF6uIa_G79mA-lv05dxaS1xciot8RzH/view?usp=sharing
+
 Don't worry if the movie that you are looking for is not auto-suggested. Just type the movie name and click on "enter". You will be good to go eventhough if you made some typo errors.
 
 Source Code: https://github.com/Rishav7771/NetflixRecommendationEngine
